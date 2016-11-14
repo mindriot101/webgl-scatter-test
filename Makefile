@@ -1,7 +1,10 @@
-all: static/bundle.js static/example.js
+recompile: static/bundle.js static/example.js
 
 watch:
-	when-changed scatter.js scatter_example.js -c make
+	when-changed scatter.js scatter_example.js -c make recompile
+
+server:
+	python ./server.py
 
 static/bundle.js: scatter.js
 	./node_modules/.bin/browserify $< -o $@
@@ -9,4 +12,4 @@ static/bundle.js: scatter.js
 static/example.js: scatter_example.js
 	./node_modules/.bin/browserify $< -o $@
 
-.PHONY: watch
+.PHONY: watch server
