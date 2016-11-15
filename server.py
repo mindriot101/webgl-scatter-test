@@ -9,10 +9,24 @@ app = Flask(__name__)
 
 @app.route('/data')
 def fetch_data():
-    stdcrms = np.load('stdcrms.npy')
+    arr = np.load('stdcrms.npy')
+    stdcrms = arr['stdcrms']
     x = np.arange(stdcrms.size)
 
-    return jsonify({'data': [x.tolist(), stdcrms.tolist()]})
+    nights = arr['night']
+    night_breaks = []
+    last_night = nights[0]
+    for i, night in enumerate(nights):
+        if night != last_night:
+            night_breaks.append((i, night))
+            last_night = night
+
+    print(night_breaks)
+
+    return jsonify({
+        'data': [x.tolist(), stdcrms.tolist()],
+        'nights': night_breaks}
+    )
 
 
 @app.route('/')

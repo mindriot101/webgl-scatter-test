@@ -52,7 +52,9 @@ function maxOfArray(arr) {
 
 $(document).ready(function() {
     $.getJSON("/data", function(data, status, jqXHR) {
+        var nights = data.nights;
         var data = data.data;
+        console.log(nights);
         var canvas = document.getElementById("plotcanvas");
         window.addEventListener('resize', fit(canvas, null, +window.devicePixelRatio), false)
 
@@ -64,6 +66,7 @@ $(document).ready(function() {
         var xtick_gap = (dataBox[2] - dataBox[0]) / 10;
         var ytick_gap = (dataBox[3] - dataBox[1]) / 10;
 
+        var xticks = nights.map(function(row) { return { x: row[0], text: row[1] }; });
         var yticks = [];
         for (var i=dataBox[1]; i<dataBox[3]; i+=ytick_gap) {
             yticks.push({
@@ -76,7 +79,10 @@ $(document).ready(function() {
         var options = {
             gl: gl,
             pixelRatio: +window.devicePixelRatio,
-            ticks: [makeTicks(dataBox[0], dataBox[2], xtick_gap, 0), yticks],
+            ticks: [xticks, yticks],
+            tickEnable: [true, true, false, false],
+            tickAngle: [45, 0, 0, 0],
+            tickPad: [25, 15, 15, 15],
             borderLineEnable: [false, false, false, false],
             titleEnable: false,
             dataBox: dataBox,
