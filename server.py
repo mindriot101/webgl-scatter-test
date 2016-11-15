@@ -14,12 +14,13 @@ def fetch_data():
     x = np.arange(stdcrms.size)
 
     nights = arr['night']
-    night_breaks = []
+    night_breaks = [(0, nights[0])]
     last_night = nights[0]
     for i, night in enumerate(nights):
         if night != last_night:
             night_breaks.append((i, night))
             last_night = night
+    night_breaks.append((len(nights), nights[-1]))
 
     print(night_breaks)
 
