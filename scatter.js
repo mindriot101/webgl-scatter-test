@@ -1,7 +1,8 @@
 var $ = require('jquery');
 var createPlot = require('gl-plot2d');
 var createScatter = require('gl-scatter2d');
-var mouseChange = require('mouse-change')
+var mouseWheel = require('mouse-wheel');
+var mouseChange = require('mouse-change');
 
 
 function positionsFromData(data) {
