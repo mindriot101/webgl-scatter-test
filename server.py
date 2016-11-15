@@ -22,8 +22,6 @@ def fetch_data():
             last_night = night
     night_breaks.append((len(nights), nights[-1]))
 
-    print(night_breaks)
-
     return jsonify({
         'data': [x.tolist(), stdcrms.tolist()],
         'nights': night_breaks}
