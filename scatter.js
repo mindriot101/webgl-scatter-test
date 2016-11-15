@@ -4,34 +4,6 @@ var createPlot = require('gl-plot2d');
 var createScatter = require('gl-scatter2d');
 var mouseChange = require('mouse-change')
 
-function makeTicks(lo, hi, step, precision) {
-  var result = []
-  for(var i=lo, f=0; i<=hi; i+=step, f+=1) {
-
-    var text = ''
-    if(precision >= 0) {
-      text = Math.round(lo + f*step) + ''
-    } else {
-      var len = Math.abs(precision)
-      var num = (lo + f*step)
-      var text = Math.abs(Math.round(num/step)) + ''
-      while(text.length <= len) {
-        text = '0' + text
-      }
-      text = text.substr(0, text.length - len) + '.' +
-             text.substr(text.length - len)
-      if(num < 0) {
-        text = '-' + text
-      }
-    }
-
-    result.push({
-      x: i,
-      text: text
-    })
-  }
-  return result
-}
 
 function positionsFromData(data) {
     var positions = new Float32Array(2 * data[0].length);
