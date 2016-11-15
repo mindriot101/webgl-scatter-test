@@ -28,8 +28,8 @@ function plot_data(elem, data) {
 
     var gl = elem.getContext('webgl');
 
-    var dataBox = [minOfArray(data[0]), 0.1,
-        maxOfArray(data[0]), 0.6];
+    var dataBox = [data[0][0], 0.1,
+        data[0][data[0].length - 1], 0.6];
 
     var xtick_gap = (dataBox[2] - dataBox[0]) / 10;
     var ytick_gap = (dataBox[3] - dataBox[1]) / 10;
