@@ -1,5 +1,4 @@
 var $ = require('jquery');
-var fit = require('canvas-fit');
 var createPlot = require('gl-plot2d');
 var createScatter = require('gl-scatter2d');
 var mouseChange = require('mouse-change')
@@ -28,7 +27,6 @@ $(document).ready(function() {
         var data = data.data;
         console.log(nights);
         var canvas = document.getElementById("plotcanvas");
-        window.addEventListener('resize', fit(canvas, null, +window.devicePixelRatio), false)
 
         var gl = canvas.getContext('webgl');
 
